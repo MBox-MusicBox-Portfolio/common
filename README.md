@@ -1,5 +1,5 @@
   <h1>MusicBox Project Automation Script</h1>
-  <p>This script automates the process of building microservices projects on your local machine. It includes checking and installing required software programs, configuring SSH access keys for GitLab, creating necessary project directories, and pulling code repositories from GitLab.</p>
+  <p>This script automates the process of building microservices projects on your local machine. It includes checking and installing required software programs, configuring SSH access keys for GitHub, creating necessary project directories, and pulling code repositories from GitHub.</p>
   
   <h2>Prerequisites</h2>
   <p>This script requires the following programs to be installed:</p>
@@ -90,7 +90,7 @@ Host gitlab.musicbox.local
 
 <hr>
 <h1>Скрипт автоматизации проекта MusicBox</h1>
-<p>Этот скрипт автоматизирует процесс создания проектов микросервисов на вашем локальном компьютере. Он включает в себя проверку и установку необходимых программ, настройку доступа SSH для GitLab, создание необходимых директорий проекта и загрузку кодовых репозиториев из GitLab.</p>
+<p>Этот скрипт автоматизирует процесс создания проектов микросервисов на вашем локальном компьютере. Он включает в себя проверку и установку необходимых программ, настройку доступа SSH для GitHub, создание необходимых директорий проекта и загрузку кодовых репозиториев из GitLab.</p>
 
 <h2>Предварительные требования</h2>
 <p>Для работы скрипта требуются следующие установленные программы:</p>
