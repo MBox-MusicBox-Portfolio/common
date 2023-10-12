@@ -12,20 +12,20 @@ programs=("git" "ssh" "openvpn")
 project_dir="$HOME/Документы/MusicBox"
 
 # Base URL for repositories
-repo_base_url="git@gitlab.musicbox.local:music-box"
+repo_base_url="git@github.com:MBox-MusicBox-Portfolio"
 
 # Map of project directories relative to the project_dir and their corresponding repository URLs
 declare -A directory_repository_map=(
-    		  ["$project_dir/api/auth"]="$repo_base_url/back-end/auth.git"
-   		  ["$project_dir/api/admin"]="$repo_base_url/back-end/admin.git"
-   		  ["$project_dir/api/public"]="$repo_base_url/back-end/public.git"
-   		  ["$project_dir/consumer/event.route"]="$repo_base_url/consumer/event.route.git"
-   		  ["$project_dir/consumer/mailer"]="$repo_base_url/consumer/mailer.git"
-   		  ["$project_dir/consumer/socket.emitter"]="$repo_base_url/consumer/socket.emitter.git"
-   		  ["$project_dir/consumer/socket.instance"]="$repo_base_url/consumer/socket.instance.git"
-    		  ["$project_dir/frontend/admin"]="$repo_base_url/front-end/admin.git"
-    		  ["$project_dir/frontend/public"]="$repo_base_url/front-end/public.git"
-    		  ["$project_dir"]="$repo_base_url/temp.git"
+    		  ["$project_dir/api/auth"]="$repo_base_url/auth.git"
+   		   ["$project_dir/api/admin"]="$repo_base_url/admin.git"
+   		   ["$project_dir/api/public"]="$repo_base_url/public.git"
+   		   ["$project_dir/api/musician"]="$repo_base_url/musician.git"
+   		   ["$project_dir/consumer/event.route"]="$repo_base_url/event.route.git"
+   		   ["$project_dir/consumer/mailer"]="$repo_base_url/mailer.git"
+   		   ["$project_dir/consumer/socket.emitter"]="$repo_base_url/socket.emitter.git"
+   		   ["$project_dir/consumer/socket.instance"]="$repo_base_url/socket.instance.git"
+    		  ["$project_dir/frontend/admin"]="$repo_base_url/admin.git"
+    		  ["$project_dir/frontend/public"]="$repo_base_url/public.git"
 )
 
 #Config access to gitlab 
@@ -144,4 +144,3 @@ function Start()
 }
 # Running
 Start
-
