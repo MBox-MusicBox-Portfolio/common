@@ -24,8 +24,8 @@ declare -A directory_repository_map=(
    		   ["$project_dir/consumer/mailer"]="$repo_base_url/mailer.git"
    		   ["$project_dir/consumer/socket.emitter"]="$repo_base_url/socket.emitter.git"
    		   ["$project_dir/consumer/socket.instance"]="$repo_base_url/socket.instance.git"
-    		  ["$project_dir/frontend/admin"]="$repo_base_url/admin.git"
-    		  ["$project_dir/frontend/public"]="$repo_base_url/public.git"
+    		  ["$project_dir/frontend/admin"]="$repo_base_url/FrontendAdmin.git"
+    		  ["$project_dir/frontend/public"]="$repo_base_url/FrontendPublic.git"
 )
 
 #Config access to gitlab 
