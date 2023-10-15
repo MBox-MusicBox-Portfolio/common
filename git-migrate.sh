@@ -26,6 +26,7 @@ declare -A directory_repository_map=(
    		  ["$project_dir/consumer/socket.instance"]="$repo_base_url/socket.instance.git"
     		  ["$project_dir/frontend/admin"]="$repo_base_url/FrontendAdmin.git"
     		  ["$project_dir/frontend/public"]="$repo_base_url/FrontendPublic.git"
+		  ["$project_dir/docs"]="$repo_base_url/apidoc.git"
     		  ["$project_dir"]="$repo_base_url/common.git"
 )
 
