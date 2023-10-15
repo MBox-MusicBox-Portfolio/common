@@ -22,6 +22,8 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
       - './volumes/database:/var/lib/mysql'
+    ports:
+      - "3307:3306"  
     networks:
       - rabbit_network
 
@@ -169,6 +171,7 @@ services:
       - mailer
       - rabbitmq
       - auth
+      - swagger-ui
     ports:
       - "80:80"
 
@@ -180,6 +183,23 @@ services:
       - 'host.docker.internal:host-gateway'
     networks:
       - rabbit_network
+    
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8081:8080"
+    container_name: musicbox-swaggerapi  
+    environment:
+       NAME: "swagger"
+       URLS: "[{ url: '/doc/authorization.json', name: 'Authorization'},
+              { url: '/doc/registration.json', name: 'Registration'},]"
+    volumes:
+      - ./docs:/usr/share/nginx/html/doc
+    extra_hosts:
+      - 'host.docker.internal:host-gateway' 
+    networks:
+      - rabbit_network
+
 
 networks:
   rabbit_network:
