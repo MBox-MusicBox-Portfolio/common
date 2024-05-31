@@ -64,7 +64,7 @@ services:
   auth:
     build: ./api/auth
     volumes:
-      - ./api/auth:/usr/src/app
+      - ./api/auth:/usr/src/app/auth
     networks:
       - rabbit_network
     expose:
