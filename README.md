@@ -182,3 +182,6 @@ Host gitlab.musicbox.local
 <p><b>Шаг 8: Запустите ваш скрипт</b></p>
 <pre><code>./git.sh</code></pre>
 <p><em>Разработано Сергеем Жилцовым</em></p>
+
+#Copyright 
+(C) All right reserved by Array Studio Inc  
