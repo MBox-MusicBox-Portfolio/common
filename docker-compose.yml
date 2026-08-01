@@ -7,6 +7,7 @@ services:
       RABBITMQ_DEFAULT_PASS: password
     networks:
       - rabbit_network
+    restart: unless-stopped  
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -23,7 +24,8 @@ services:
     volumes:
       - './volumes/database:/var/lib/mysql'
     ports:
-      - "3307:3306"  
+      - "3307:3306"
+    restart: unless-stopped    
     networks:
       - rabbit_network
 
@@ -36,6 +38,7 @@ services:
       - rabbit_network
     depends_on:
       - redis.socket
+    restart: unless-stopped    
     environment:
       - SERVER_NAME=socket.right
 
@@ -48,6 +51,7 @@ services:
       - rabbit_network
     depends_on:
       - redis.socket
+    restart: unless-stopped    
     environment:
       - SERVER_NAME=socket.left
 
@@ -57,6 +61,7 @@ services:
       dockerfile: Dockerfile
     networks:
       - rabbit_network
+    restart: unless-stopped  
     depends_on:
       - db
       - rabbitmq
@@ -64,28 +69,30 @@ services:
   auth:
     build: ./api/auth
     volumes:
-      - ./api/auth:/usr/src/app/auth
+      - ./api/auth:/usr/app/auth
+    command: sh -c "npm run dev"
     networks:
       - rabbit_network
     expose:
       - "4000"
     environment:
       - NAME=auth
+    restart: unless-stopped  
     depends_on:
       - rabbitmq
 
-  musician:
-    build: ./api/musician
-    volumes:
-      - ./api/musician:/usr/src/app
-    networks:
-      - rabbit_network
-    expose:
-      - "4001"
-    environment:
-      - NAME=musician
-    depends_on:
-      - rabbitmq  
+#  musician:
+#    build: ./api/musician
+#    volumes:
+#      - ./api/musician:/usr/src/app
+#    networks:
+#      - rabbit_network
+#    expose:
+#     - "4001"
+#    environment:
+#      - NAME=musician
+#    depends_on:
+#      - rabbitmq  
 
   public:
     build:
@@ -93,6 +100,7 @@ services:
       dockerfile: Dockerfile
     networks:
       - rabbit_network
+    restart: unless-stopped    
     depends_on:
       - db
       - rabbitmq
@@ -106,6 +114,7 @@ services:
       - rabbit_network
     expose:
       - "3000"
+    restart: unless-stopped    
     environment:
       - NAME=mailer
     depends_on:
@@ -122,15 +131,17 @@ services:
       - "3000"
     environment:
       - NAME=event.route
+    restart: unless-stopped    
     depends_on:
       - rabbitmq
       - redis.socket
 
   front.admin:
     build: ./frontend/admin
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm run dev"
     volumes:
       - ./frontend/admin:/usr/src/app
+    restart: unless-stopped    
     networks:
       - rabbit_network
 
@@ -141,6 +152,7 @@ services:
     command: sh -c "npm install && npm run dev"
     volumes:
       - ./frontend/public:/usr/src/app
+    restart: unless-stopped    
     networks:
       - rabbit_network
 
@@ -153,6 +165,7 @@ services:
       - rabbit_network
     expose:
       - "3000"
+    restart: unless-stopped    
     environment:
       - NAME=emitter
     depends_on:
@@ -165,13 +178,13 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - rabbit_network
+    restart: unless-stopped    
     depends_on:
       - db
       - admin
       - mailer
       - rabbitmq
       - auth
-      - swagger-ui
     ports:
       - "80:80"
 
@@ -181,22 +194,9 @@ services:
       - './volumes/db/redis/sockets:/data'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
-    networks:
-      - rabbit_network
-    
-  swagger-ui:
-    image: swaggerapi/swagger-ui
     ports:
-      - "8081:8080"
-    container_name: musicbox-swaggerapi  
-    environment:
-       NAME: "swagger"
-       URLS: "[{ url: '/doc/authorization.json', name: 'Authorization'},
-              { url: '/doc/registration.json', name: 'Registration'},]"
-    volumes:
-      - ./docs:/usr/share/nginx/html/doc
-    extra_hosts:
-      - 'host.docker.internal:host-gateway' 
+      - "6380:6379"
+    restart: unless-stopped      
     networks:
       - rabbit_network
 
